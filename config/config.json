@@ -1,0 +1,11 @@
+{
+ "storage": {
+   "current": "json",
+   "types": [
+   "json",
+   "text",
+   "redis",
+   "database"
+  ]
+ }
+}
