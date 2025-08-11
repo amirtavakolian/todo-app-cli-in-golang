@@ -4,12 +4,13 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"todo-app-cli/auth"
 	"todo-app-cli/constants"
 	"todo-app-cli/pkg"
 )
 
 func ShowStartupMenu() {
-	startupMenu := getConfig()
+	startupMenu := pkg.GetConfig()
 
 	c := startupMenu[constants.CONFIG_STARTUP_MENU_KEY]
 
@@ -26,5 +27,9 @@ func ShowStartupMenu() {
 }
 
 func processSelectedMenu(selectedMenu string) {
-
+	switch selectedMenu {
+	case "1":
+		registerResult := auth.New().Register()
+		fmt.Print(registerResult)
+	}
 }

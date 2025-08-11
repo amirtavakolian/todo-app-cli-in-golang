@@ -9,7 +9,7 @@ import (
 
 func GetConfig() map[string]interface{} {
 
-	var startupMenu map[string]interface{}
+	var configFileContent map[string]interface{}
 
 	_, err := os.Stat("./" + constants.CONFIG_FILE_DIR_AND_FILE_NAME)
 
@@ -19,11 +19,11 @@ func GetConfig() map[string]interface{} {
 
 	t, _ := os.ReadFile("./" + constants.CONFIG_FILE_DIR_AND_FILE_NAME)
 
-	err = json.Unmarshal(t, &startupMenu)
+	err = json.Unmarshal(t, &configFileContent)
 
 	if err != nil {
 		log.Fatal(err.Error())
 	}
 
-	return startupMenu
+	return configFileContent
 }
