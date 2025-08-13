@@ -57,6 +57,32 @@ func (auth Auth) Register() string {
 
 }
 
+func (auth Auth) Login() (string, bool) {
+
+	fmt.Print("Enter your username: ")
+	auth.UserDTO.Username = getScanner()
+
+	fmt.Print("Enter your password: ")
+	auth.UserDTO.Password = getScanner()
+
+	allUsersRecordes := auth.Storage.GetAllRecordes()
+
+	var userFound bool
+
+	for _, value := range allUsersRecordes.([]dto.User) {
+		if value.Username == auth.UserDTO.Username && value.Password == auth.UserDTO.Password {
+			userFound = true
+			break
+		}
+	}
+
+	if !userFound {
+		return "User or password is wrong", false
+	}
+
+	return "", true
+}
+
 func getScanner() string {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
