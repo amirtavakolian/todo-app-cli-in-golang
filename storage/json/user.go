@@ -15,11 +15,11 @@ func NewJsonStorage() UserStorage {
 	return UserStorage{}
 }
 
-func (storage UserStorage) IsUsernameExist(username string) bool {
+func (storage UserStorage) Exist(username string) bool {
 
 	var dbData []dto.User
 
-	file, err := os.ReadFile("./" + constants.JSON_DATABASES_DIRECTORY + constants.JSON_DATABASE_FILE_NAME)
+	file, err := os.ReadFile("./" + constants.JSON_DATABASES_DIRECTORY + constants.JSON_DATABASE_USERS_FILE_NAME)
 
 	if err != nil {
 		log.Fatal(err.Error())
@@ -36,13 +36,15 @@ func (storage UserStorage) IsUsernameExist(username string) bool {
 	return true
 }
 
-func (storage UserStorage) Store(userData dto.User) bool {
+func (storage UserStorage) Store(userData interface{}) bool {
 
 	userDto := storage.GetAllRecordes()
 
-	userData.Id = storage.calculateUserId() + 1
+	userDataDTOType := userData.(dto.User)
 
-	userDto = append(userDto.([]dto.User), userData)
+	userDataDTOType.Id = storage.calculateUserId() + 1
+
+	userDto = append(userDto.([]dto.User), userDataDTOType)
 
 	uerDtoJson, _ := json.Marshal(userDto)
 

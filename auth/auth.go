@@ -47,11 +47,11 @@ func (auth Auth) Register() string {
 		return message
 	}
 
-	if result := auth.Storage.IsUsernameExist(auth.UserDTO.Username); !result {
+	if result := auth.Storage.Exist(auth.UserDTO.Username); !result {
 		return "user is available"
 	}
 
-	auth.Storage.Store(*auth.UserDTO)
+	auth.Storage.Store(auth.UserDTO)
 
 	return "User created successfully"
 
