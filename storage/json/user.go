@@ -38,23 +38,11 @@ func (storage UserStorage) IsUsernameExist(username string) bool {
 
 func (storage UserStorage) Store(userData dto.User) bool {
 
-	var userDto []dto.User
-
-	usersdb, usersdbErr := os.ReadFile(constants.JSON_DATABASE_FULL_PATH)
-
-	if usersdbErr != nil {
-		log.Fatal(usersdbErr.Error())
-	}
-
-	unmarshalErr := json.Unmarshal(usersdb, &userDto)
-
-	if unmarshalErr != nil {
-		log.Fatal(unmarshalErr.Error())
-	}
+	userDto := storage.GetAllRecordes()
 
 	userData.Id = storage.calculateUserId() + 1
 
-	userDto = append(userDto, userData)
+	userDto = append(userDto.([]dto.User), userData)
 
 	uerDtoJson, _ := json.Marshal(userDto)
 
@@ -68,6 +56,14 @@ func (storage UserStorage) Store(userData dto.User) bool {
 }
 
 func (storage UserStorage) calculateUserId() int {
+
+	userDto := storage.GetAllRecordes()
+
+	return len(userDto.([]dto.User))
+}
+
+func (storage UserStorage) GetAllRecordes() any {
+
 	var userDto []dto.User
 
 	usersdb, usersdbErr := os.ReadFile(constants.JSON_DATABASE_FULL_PATH)
@@ -82,5 +78,5 @@ func (storage UserStorage) calculateUserId() int {
 		log.Fatal(unmarshalErr.Error())
 	}
 
-	return len(userDto)
+	return userDto
 }
