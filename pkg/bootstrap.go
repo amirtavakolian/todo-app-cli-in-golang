@@ -68,11 +68,13 @@ func createJsonDatabases() {
 		_, err := os.Stat("./" + constants.JSON_DATABASES_DIRECTORY + value.(string))
 
 		if err != nil {
-			_, errOpenFile := os.OpenFile("./"+constants.JSON_DATABASES_DIRECTORY+value.(string), os.O_RDWR|os.O_CREATE, 0666)
+			file, errOpenFile := os.OpenFile("./"+constants.JSON_DATABASES_DIRECTORY+value.(string), os.O_RDWR|os.O_CREATE, 0666)
 
 			if errOpenFile != nil {
 				log.Fatal(errOpenFile.Error())
 			}
+
+			file.Write(([]byte)("[]"))
 		}
 	}
 }
