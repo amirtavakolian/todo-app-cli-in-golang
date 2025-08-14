@@ -41,11 +41,11 @@ func (storage UserStorage) Store(userData interface{}) bool {
 
 	userDto := storage.GetAllRecordes()
 
-	userDataDTOType := userData.(dto.User)
+	userDataDTOType := userData.(*dto.User)
 
 	userDataDTOType.Id = storage.calculateUserId() + 1
 
-	userDto = append(userDto.([]dto.User), userDataDTOType)
+	userDto = append(userDto.([]dto.User), *userDataDTOType)
 
 	uerDtoJson, _ := json.Marshal(userDto)
 

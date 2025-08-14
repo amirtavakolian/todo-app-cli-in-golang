@@ -63,7 +63,7 @@ func (storage CategoryStorage) GetAllRecordes() any {
 
 	var categoryDto []dto.Category
 
-	categoriesdb, categoriesdbErr := os.ReadFile(constants.JSON_DATABASE_USERS_FULL_PATH)
+	categoriesdb, categoriesdbErr := os.ReadFile(constants.JSON_DATABASE_CATEGORIES_FULL_PATH)
 
 	if categoriesdbErr != nil {
 		log.Fatal(categoriesdbErr.Error())
