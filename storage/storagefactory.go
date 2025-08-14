@@ -9,20 +9,21 @@ import (
 	"todo-app-cli/storage/json"
 )
 
-func GetStorageInstance() contract.IStorage {
+func GetStorageInstance(name string) contract.IStorage {
 
 	currentDatabaseType := getCurrentDatabaseType()
+
+	instances := getAllInstances()
 
 	switch currentDatabaseType {
 
 	case constants.JSON_TYPE:
-		return json.NewJsonStorage()
+		return instances[name]()
 
 	default:
 		os.Exit(1)
 
 	}
-
 	return nil
 }
 
@@ -49,4 +50,14 @@ func getCurrentDatabaseType() string {
 	}
 
 	return currentDatabaseType
+}
+
+func getAllInstances() map[string]func() contract.IStorage {
+
+	instances := map[string]func() contract.IStorage{
+		"user":     json.NewUserStorage,
+		"category": json.NewCategoryStorage,
+	}
+
+	return instances
 }

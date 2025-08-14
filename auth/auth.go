@@ -20,7 +20,7 @@ func New() Auth {
 	return Auth{
 		UserDTO:        &dto.User{},
 		AuthValidation: validation.AuthValidation{},
-		Storage:        storage.GetStorageInstance(),
+		Storage:        storage.GetStorageInstance("user"),
 	}
 }
 
