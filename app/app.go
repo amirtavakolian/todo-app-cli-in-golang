@@ -7,7 +7,7 @@ import (
 	"todo-app-cli/auth"
 	"todo-app-cli/constants"
 	"todo-app-cli/pkg"
-	"todo-app-cli/todo"
+	"todo-app-cli/service"
 )
 
 func ShowStartupMenu() {
@@ -36,7 +36,7 @@ func processSelectedMenu(selectedMenu string) {
 		if loginResultMessage, loginResultStatus := auth.New().Login(); !loginResultStatus {
 			fmt.Print(loginResultMessage)
 		} else {
-			todo.New().ShowTodoMenu()
+			service.New().ShowTodoMenu()
 		}
 	}
 }

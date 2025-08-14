@@ -9,8 +9,7 @@ import (
 	"todo-app-cli/storage/contract"
 )
 
-type CategoryStorage struct {
-}
+type CategoryStorage struct {}
 
 func NewCategoryStorage() contract.IStorage {
 	return CategoryStorage{}

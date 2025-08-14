@@ -57,6 +57,7 @@ func getAllInstances() map[string]func() contract.IStorage {
 	instances := map[string]func() contract.IStorage{
 		"user":     json.NewUserStorage,
 		"category": json.NewCategoryStorage,
+		"task": 	json.NewTaskStorage,
 	}
 
 	return instances

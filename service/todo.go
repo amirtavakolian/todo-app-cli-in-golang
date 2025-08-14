@@ -28,6 +28,8 @@ func (todo Todo) ShowTodoMenu() {
 	switch selectedMenu {
 	case "1":
 		NewCategory().ShowCategoryMenu()
+	case "2":
+		NewTask().ShowTaskMenu()
 	}
 
 }
