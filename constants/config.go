@@ -8,4 +8,5 @@ var StorageTypes = []string{"json", "text", "redis", "database"}
 
 const CONFIG_STARTUP_MENU_KEY = "startup-menu"
 const CONFIG_TODO_MENU = "todo-menu"
+const CONFIG_CATEGORY_MENU = "category-menu"
 

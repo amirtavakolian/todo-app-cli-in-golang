@@ -13,6 +13,7 @@
     "2" : "Login",
     "3": "Settings"
  },
- "json-databases" : ["users.json"],
- "todo-menu": ["1- Create category", "2- Create task", "3- Exit"]
+ "json-databases" : ["users.json", "categories.json"],
+ "todo-menu": ["1- Create category", "2- Create task", "3- Exit"],
+ "category-menu": ["1- Create new category", "2- All categories", "3- Edit category", "4- Delete category"]
 }

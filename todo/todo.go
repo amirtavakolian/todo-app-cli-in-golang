@@ -23,7 +23,13 @@ func (todo Todo) ShowTodoMenu() {
 		fmt.Println(value)
 	}
 
-	// selectedMenu := getScanner()
+	selectedMenu := getScanner()
+
+	switch selectedMenu {
+	case "1":
+		NewCategory().ShowCategoryMenu()
+	}
+
 }
 
 func getScanner() string {

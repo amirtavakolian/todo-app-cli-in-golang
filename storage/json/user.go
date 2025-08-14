@@ -6,12 +6,13 @@ import (
 	"os"
 	"todo-app-cli/constants"
 	"todo-app-cli/dto"
+	"todo-app-cli/storage/contract"
 )
 
 type UserStorage struct {
 }
 
-func NewJsonStorage() UserStorage {
+func NewUserStorage() contract.IStorage {
 	return UserStorage{}
 }
 
@@ -48,7 +49,7 @@ func (storage UserStorage) Store(userData interface{}) bool {
 
 	uerDtoJson, _ := json.Marshal(userDto)
 
-	errWrite := os.WriteFile(constants.JSON_DATABASE_FULL_PATH, uerDtoJson, 0666)
+	errWrite := os.WriteFile(constants.JSON_DATABASE_USERS_FULL_PATH, uerDtoJson, 0666)
 
 	if errWrite != nil {
 		log.Fatal(errWrite.Error())
@@ -68,7 +69,7 @@ func (storage UserStorage) GetAllRecordes() any {
 
 	var userDto []dto.User
 
-	usersdb, usersdbErr := os.ReadFile(constants.JSON_DATABASE_FULL_PATH)
+	usersdb, usersdbErr := os.ReadFile(constants.JSON_DATABASE_USERS_FULL_PATH)
 
 	if usersdbErr != nil {
 		log.Fatal(usersdbErr.Error())
